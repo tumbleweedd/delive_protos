@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package customer;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "molodkin.sso.customer_order.v1;customer_order";
+
+message OrderItem {
+  int32 count = 1;
+  string product_guid = 2;
+}
+
+message Product {
+  string guid = 1;
+  string name = 2;
+  string description = 3;
+  CustomerProductType type = 4;
+  int32 weight = 5;
+  double price = 6;
+  google.protobuf.Timestamp created_at = 7;
+
+}
+
+enum CustomerProductType {
+  CUSTOMER_PRODUCT_TYPE_UNSPECIFIED = 0;
+  CUSTOMER_PRODUCT_TYPE_FIRST = 1;
+  CUSTOMER_PRODUCT_TYPE_SECOND = 2;
+  CUSTOMER_PRODUCT_TYPE_SALAD = 3;
+  CUSTOMER_PRODUCT_TYPE_DRINK = 4;
+  CUSTOMER_PRODUCT_TYPE_DESSERT = 5;
+}
+
+message CreateOrderRequest {
+  string user_guid = 1;
+  repeated OrderItem first = 2;
+  repeated OrderItem second = 3;
+  repeated OrderItem salads = 4;
+  repeated OrderItem drinks = 5;
+  repeated OrderItem desserts = 6;
+}
+
+message CreateOrderResponse {
+  uint32 status_code = 1;
+  string message = 2;
+}
+
+message GetActualMenuRequest {
+}
+
+message GetActualMenuResponse {
+  repeated Product first = 2;
+  repeated Product second = 3;
+  repeated Product salads = 4;
+  repeated Product drinks = 5;
+  repeated Product desserts = 6;
+}

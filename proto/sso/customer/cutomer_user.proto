@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package customer;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "molodkin.sso.customer_user.v1;customer_user";
+
+message User {
+  string id = 1;
+  string name = 2;
+  string email = 3;
+  string office_name = 4;
+  enum role {
+    user = 0;
+    admin = 1;
+    manager = 2;
+  }
+  google.protobuf.Timestamp created_at = 5;
+  google.protobuf.Timestamp updated_at = 6;
+  string office_guid = 7;
+}
+
+service UserService {
+  rpc GetUserList(GetUserListRequest) returns (GetUserListResponse);
+}
+
+message GetUserListRequest {
+  string office_guid = 1;
+}
+
+message GetUserListResponse {
+  repeated User data = 1;
+  uint32 status_code = 2;
+  string message = 3;
+}
