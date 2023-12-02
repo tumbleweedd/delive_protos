@@ -29,7 +29,7 @@ message RegisterRequest {
   string email = 4;
   string office_guid = 5;
   string password = 6;
-  string passwordConfirm = 7;
+  string password_confirm = 7;
 }
 
 message RegisterResponse {
