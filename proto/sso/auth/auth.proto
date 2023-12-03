@@ -13,7 +13,7 @@ service Auth {
 }
 
 message IsAdminRequest {
-  int64 user_uuid = 1; // User ID to validate.
+  string user_uuid = 1; // User ID to validate.
 }
 
 message IsAdminResponse {
@@ -30,7 +30,7 @@ message RegisterRequest {
 }
 
 message RegisterResponse {
-  int64 user_uuid = 1;
+  string user_uuid = 1;
 }
 
 message LoginRequest {
