@@ -23,11 +23,10 @@ message IsAdminResponse {
 message RegisterRequest {
   string name = 1;
   string lastName = 2;
-  string login = 3;
-  string email = 4;
-  string office_uuid = 5;
-  string password = 6;
-  string password_confirm = 7;
+  string email = 3;
+  string office_uuid = 4;
+  string password = 5;
+  string password_confirm = 6;
 }
 
 message RegisterResponse {
