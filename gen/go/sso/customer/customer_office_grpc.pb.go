@@ -23,6 +23,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type OfficeServiceClient interface {
 	CreateOffice(ctx context.Context, in *CreateOfficeRequest, opts ...grpc.CallOption) (*CreateOfficeResponse, error)
+	GetOffice(ctx context.Context, in *GetOfficeRequest, opts ...grpc.CallOption) (*GetOfficeResponse, error)
 	GetOfficeList(ctx context.Context, in *GetOfficeListRequest, opts ...grpc.CallOption) (*GetOfficeListResponse, error)
 }
 
@@ -43,6 +44,15 @@ func (c *officeServiceClient) CreateOffice(ctx context.Context, in *CreateOffice
 	return out, nil
 }
 
+func (c *officeServiceClient) GetOffice(ctx context.Context, in *GetOfficeRequest, opts ...grpc.CallOption) (*GetOfficeResponse, error) {
+	out := new(GetOfficeResponse)
+	err := c.cc.Invoke(ctx, "/customer.OfficeService/GetOffice", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *officeServiceClient) GetOfficeList(ctx context.Context, in *GetOfficeListRequest, opts ...grpc.CallOption) (*GetOfficeListResponse, error) {
 	out := new(GetOfficeListResponse)
 	err := c.cc.Invoke(ctx, "/customer.OfficeService/GetOfficeList", in, out, opts...)
@@ -57,6 +67,7 @@ func (c *officeServiceClient) GetOfficeList(ctx context.Context, in *GetOfficeLi
 // for forward compatibility
 type OfficeServiceServer interface {
 	CreateOffice(context.Context, *CreateOfficeRequest) (*CreateOfficeResponse, error)
+	GetOffice(context.Context, *GetOfficeRequest) (*GetOfficeResponse, error)
 	GetOfficeList(context.Context, *GetOfficeListRequest) (*GetOfficeListResponse, error)
 	mustEmbedUnimplementedOfficeServiceServer()
 }
@@ -67,6 +78,9 @@ type UnimplementedOfficeServiceServer struct {
 
 func (UnimplementedOfficeServiceServer) CreateOffice(context.Context, *CreateOfficeRequest) (*CreateOfficeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateOffice not implemented")
+}
+func (UnimplementedOfficeServiceServer) GetOffice(context.Context, *GetOfficeRequest) (*GetOfficeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOffice not implemented")
 }
 func (UnimplementedOfficeServiceServer) GetOfficeList(context.Context, *GetOfficeListRequest) (*GetOfficeListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOfficeList not implemented")
@@ -102,6 +116,24 @@ func _OfficeService_CreateOffice_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _OfficeService_GetOffice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOfficeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OfficeServiceServer).GetOffice(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/customer.OfficeService/GetOffice",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OfficeServiceServer).GetOffice(ctx, req.(*GetOfficeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _OfficeService_GetOfficeList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetOfficeListRequest)
 	if err := dec(in); err != nil {
@@ -130,6 +162,10 @@ var OfficeService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateOffice",
 			Handler:    _OfficeService_CreateOffice_Handler,
+		},
+		{
+			MethodName: "GetOffice",
+			Handler:    _OfficeService_GetOffice_Handler,
 		},
 		{
 			MethodName: "GetOfficeList",

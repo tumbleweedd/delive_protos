@@ -31,6 +31,4 @@ message GetUserListRequest {
 
 message GetUserListResponse {
   repeated User data = 1;
-  uint32 status_code = 2;
-  string message = 3;
 }

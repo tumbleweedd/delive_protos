@@ -41,8 +41,7 @@ message CreateOrderRequest {
 }
 
 message CreateOrderResponse {
-  uint32 status_code = 1;
-  string message = 2;
+  int64 order_uuid = 1;
 }
 
 message GetActualMenuRequest {

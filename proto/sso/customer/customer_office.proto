@@ -16,6 +16,7 @@ message Office {
 
 service OfficeService {
   rpc CreateOffice(CreateOfficeRequest) returns (CreateOfficeResponse);
+  rpc GetOffice(GetOfficeRequest) returns (GetOfficeResponse);
   rpc GetOfficeList (GetOfficeListRequest) returns (GetOfficeListResponse);
 }
 
@@ -26,14 +27,18 @@ message CreateOfficeRequest {
 
 message CreateOfficeResponse {
   int64 office_uuid = 1;
-  uint32 status_code = 2;
-  string message = 3;
 }
 
 message GetOfficeListRequest {}
 
 message GetOfficeListResponse {
   repeated Office data = 1;
-  uint32 status_code = 2;
-  string message = 3;
+}
+
+message GetOfficeRequest {
+  int64 office_uuid = 1;
+}
+
+message GetOfficeResponse {
+  Office data = 1;
 }
