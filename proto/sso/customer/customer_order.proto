@@ -8,11 +8,11 @@ option go_package = "molodkin.sso.customer_order.v1;customer_order";
 
 message OrderItem {
   int32 count = 1;
-  string product_guid = 2;
+  string product_uuid = 2;
 }
 
 message Product {
-  string guid = 1;
+  string uuid = 1;
   string name = 2;
   string description = 3;
   CustomerProductType type = 4;
@@ -32,7 +32,7 @@ enum CustomerProductType {
 }
 
 message CreateOrderRequest {
-  string user_guid = 1;
+  string user_uuid = 1;
   repeated OrderItem first = 2;
   repeated OrderItem second = 3;
   repeated OrderItem salads = 4;

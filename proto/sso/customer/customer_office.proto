@@ -7,7 +7,7 @@ import "google/protobuf/timestamp.proto";
 option go_package = "molodkin.sso.customer_office.v1;customer_office";
 
 message Office {
-  string guid = 1;
+  string uuid = 1;
   string name = 2;
   string address = 3;
   google.protobuf.Timestamp created_at = 4;
@@ -25,7 +25,7 @@ message CreateOfficeRequest {
 }
 
 message CreateOfficeResponse {
-  int64 office_guid = 1;
+  int64 office_uuid = 1;
   uint32 status_code = 2;
   string message = 3;
 }

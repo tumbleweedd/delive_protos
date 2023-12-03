@@ -13,7 +13,7 @@ service Auth {
 }
 
 message IsAdminRequest {
-  int64 user_guid = 1; // User ID to validate.
+  int64 user_uuid = 1; // User ID to validate.
 }
 
 message IsAdminResponse {
@@ -25,13 +25,13 @@ message RegisterRequest {
   string lastName = 2;
   string login = 3;
   string email = 4;
-  string office_guid = 5;
+  string office_uuid = 5;
   string password = 6;
   string password_confirm = 7;
 }
 
 message RegisterResponse {
-  int64 user_guid = 1;
+  int64 user_uuid = 1;
 }
 
 message LoginRequest {
@@ -53,7 +53,7 @@ message LogoutResponse {
 }
 
 message RefreshTokenRequest {
-  string guid = 1;
+  string uuid = 1;
   string refresh_token = 2;
 }
 
