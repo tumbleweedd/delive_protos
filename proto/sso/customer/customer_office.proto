@@ -4,7 +4,7 @@ package customer;
 
 import "google/protobuf/timestamp.proto";
 
-option go_package = "molodkin.sso.customer_office.v1;customer_office";
+option go_package = "molodkin.sso.customer_office.v1;customer";
 
 message Office {
   string uuid = 1;

@@ -4,7 +4,7 @@ package customer;
 
 import "google/protobuf/timestamp.proto";
 
-option go_package = "molodkin.sso.customer_order.v1;customer_order";
+option go_package = "molodkin.sso.customer_order.v1;customer";
 
 message OrderItem {
   int32 count = 1;
@@ -29,6 +29,11 @@ enum CustomerProductType {
   CUSTOMER_PRODUCT_TYPE_SALAD = 3;
   CUSTOMER_PRODUCT_TYPE_DRINK = 4;
   CUSTOMER_PRODUCT_TYPE_DESSERT = 5;
+}
+
+service OrderService {
+  rpc CreateOrder(CreateOrderRequest) returns (CreateOrderResponse);
+  rpc GetActualMenu(GetActualMenuRequest) returns (GetActualMenuResponse);
 }
 
 message CreateOrderRequest {
