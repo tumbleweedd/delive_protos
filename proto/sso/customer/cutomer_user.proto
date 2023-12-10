@@ -9,16 +9,17 @@ option go_package = "molodkin.sso.customer_user.v1;customer";
 message User {
   string id = 1;
   string name = 2;
-  string email = 3;
-  string office_name = 4;
+  string lastname = 3;
+  string email = 4;
+  string office_name = 5;
   enum role {
     user = 0;
     admin = 1;
     manager = 2;
   }
-  google.protobuf.Timestamp created_at = 5;
-  google.protobuf.Timestamp updated_at = 6;
-  string office_uuid = 7;
+  google.protobuf.Timestamp created_at = 6;
+  google.protobuf.Timestamp updated_at = 7;
+  string office_uuid = 8;
 }
 
 service UserService {
@@ -31,6 +32,4 @@ message GetUserListRequest {
 
 message GetUserListResponse {
   repeated User data = 1;
-  uint32 status_code = 2;
-  string message = 3;
 }

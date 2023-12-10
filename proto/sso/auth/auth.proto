@@ -31,7 +31,7 @@ message RegisterRequest {
 }
 
 message RegisterResponse {
-  int64 user_uuid = 1;
+  string user_uuid = 1;
 }
 
 message LoginRequest {
@@ -41,7 +41,8 @@ message LoginRequest {
 }
 
 message LoginResponse {
-  string token = 1; // Auth token of the logged in user.
+  string access_token = 1; // Auth token of the logged in user.
+  string refresh_token = 2;
 }
 
 message LogoutRequest {

@@ -34,6 +34,4 @@ message GetOfficeListRequest {}
 
 message GetOfficeListResponse {
   repeated Office data = 1;
-  uint32 status_code = 2;
-  string message = 3;
 }
